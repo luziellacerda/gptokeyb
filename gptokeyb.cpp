@@ -22,8 +22,8 @@
 * Part of the code is from from https://github.com/krishenriksen/AnberPorts/blob/master/AnberPorts-Keyboard-Mouse/main.c (mostly the fake keyboard)
 * Fake Xbox code from: https://github.com/Emanem/js2xbox
 * 
-* Modified (badly) by: Shanti Gilbert for EmuELEC
-* Modified further by: Nikolai Wuttke for EmuELEC (Added support for SDL and the SDLGameControllerdb.txt)
+* Modified by Shanti Gilbert.
+* Modified further by Nikolai Wuttke (added SDL and SDLGameControllerDB support).
 * 
 * Any help improving this code would be greatly appreciated! 
 * 
@@ -107,7 +107,7 @@ struct uinput_user_dev uidev;
 
 int kill_signal = 15;
 bool kill_mode = false;
-bool sudo_kill = false; //allow sudo kill instead of killall for non-emuelec systems
+bool sudo_kill = false; // allow sudo kill instead of killall on systems that require it
 bool pckill_mode = false; //emit alt+f4 to close apps on pc during kill mode, if env variable is set
 bool openbor_mode = false;
 bool xbox360_mode = false;
@@ -2138,7 +2138,7 @@ int main(int argc, char* argv[])
   const char* config_file = nullptr;
 
   config_mode = true;
-  config_file = "/emuelec/configs/gptokeyb/default.gptk";
+  config_file = "/turborama/configs/gptokeyb/default.gptk";
 
   // Add hotkey environment variable if available
   if (char* env_hotkey = SDL_getenv("HOTKEY")) {
@@ -2185,7 +2185,7 @@ int main(int argc, char* argv[])
         config_file = argv[++ii];
       } else {
         config_mode = true;
-        config_file = "/emuelec/configs/gptokeyb/default.gptk";
+        config_file = "/turborama/configs/gptokeyb/default.gptk";
       }
     } else if (strcmp(argv[ii], "-hotkey") == 0) {
       if (ii + 1 < argc) {
